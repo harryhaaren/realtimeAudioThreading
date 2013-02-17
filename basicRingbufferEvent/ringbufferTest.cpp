@@ -130,24 +130,33 @@ int process(jack_nframes_t nframes, void* )
     {
       case EVENT_ACK:
       {
-        EventAck ev;
-        jack_ringbuffer_read( buffer, (char*)&ev, sizeof(EventAck) );
-        cout << "Event: Ack" << endl; // non RT but shows action took place
-        break;
+        if ( availableRead >= sizeof(EventAck) )
+        {
+          EventAck ev;
+          jack_ringbuffer_read( buffer, (char*)&ev, sizeof(EventAck) );
+          cout << "Event: Ack" << endl; // non RT but shows action took place
+          break;
+        }
       }
       case EVENT_ONE:
       {
-        EventOne ev;
-        jack_ringbuffer_read( buffer, (char*)&ev, sizeof(EventOne) );
-        cout << "\t\tEvent: One" << endl; // non RT but shows action took place
-        break;
+        if ( availableRead >= sizeof(EventOne) )
+        {
+          EventOne ev;
+          jack_ringbuffer_read( buffer, (char*)&ev, sizeof(EventOne) );
+          cout << "\t\tEvent: One" << endl; // non RT but shows action took place
+          break;
+        }
       }
       case EVENT_TWO:
       {
-        EventTwo ev;
-        jack_ringbuffer_read( buffer, (char*)&ev, sizeof(EventTwo) );
-        cout << "\t\t\t\tEvent: Two" << endl; // non RT but shows action took place
-        break;
+        if ( availableRead >= sizeof(EventTwo) )
+        {
+          EventTwo ev;
+          jack_ringbuffer_read( buffer, (char*)&ev, sizeof(EventTwo) );
+          cout << "\t\t\t\tEvent: Two" << endl; // non RT but shows action took place
+          break;
+        }
       }
       
     }
