@@ -1,0 +1,14 @@
+    Realtime Audio Threading
+
+This repo has multiple sub-folders which each explain an aspect
+of realtime audio threading.
+
+Communication is done using the JACK ringbuffer, and an Event class.
+This method of lock-free message passing will be used consistently
+trough each of the examples.
+
+I hope you find these examples useful and can learn from them.
+Any questions / queries / comments / thanks, please let me know.
+
+-Harry van Haaren <harryhaaren@gmail.com>
+
